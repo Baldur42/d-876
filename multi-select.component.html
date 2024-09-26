@@ -1,0 +1,27 @@
+<mat-form-field appearance="outline" class="form-field">
+	<mat-label>{{label}}</mat-label>
+	<input type="text" matInput [placeholder]="placeholder" [disabled]="disabled" [formControl]="searchFormControl" [matAutocomplete]="auto">
+	<mat-autocomplete #auto="matAutocomplete" class="disable-overflow max-height" (opened)="scrollMoveToTop()">
+		<div class="pill-container">
+			<ng-container *ngIf="selectedOptions.length !== 0; else noSelectedOptions">
+				<div *ngFor="let o of selectedOptions" class="pill">
+					<span>{{o.name}}</span>
+					<mat-icon (click)="clearSelected($event, o)">close</mat-icon>
+				</div>
+			</ng-container>
+			<ng-template #noSelectedOptions>
+				<span>{{selectedOptionsLabel}}</span>
+			</ng-template>
+		</div>
+		<cdk-virtual-scroll-viewport itemSize="48" [minBufferPx]="48 * 4" maxBufferPx="720" class="virtual-scroll-viewport">
+			<div *cdkVirtualFor="let o of filteredOptions | async; trackBy: trackOption" (click)="$event.stopPropagation()" class="option-container">
+				<mat-option class="pseudo-checkbox-disabled full-width">
+					<mat-checkbox [disableRipple]="true" [checked]="o.checked" class="disable-ripple-circle" (click)="$event.stopPropagation()" (change)="toggle(o)">
+						<div class="checkbox-label">{{o.name}} {{o.checked}}</div>
+					</mat-checkbox>
+				</mat-option>
+			</div>
+		</cdk-virtual-scroll-viewport>
+	</mat-autocomplete>
+</mat-form-field>
+<mat-icon *ngIf="selectedOptions.length !== 0" (click)="clearAll()" class="clear-all">clear</mat-icon>

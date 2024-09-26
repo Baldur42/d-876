@@ -1,0 +1,70 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+//allows click on full width of option
+.mat-mdc-option.full-width {
+    width: 100%;
+
+    & > span {
+        width: inherit;
+
+        & > .mat-mdc-checkbox {
+            width: inherit;
+
+            & > .mdc-form-field {
+                width: inherit;
+            }
+        }
+    }
+}
+
+//no ripple circle on checkbox
+mat-checkbox.disable-ripple-circle > .mdc-form-field {
+    &:hover {
+        background-color: whitesmoke;
+    }
+
+    & > .mdc-checkbox {
+        & > .mat-mdc-checkbox-touch-target {
+            height: 48px;
+            width: 48px;
+        }
+    
+        & > .mdc-checkbox__ripple {
+            display: none;
+        }
+    
+        & > .mat-mdc-focus-indicator {
+            display: none;
+        }
+    }
+
+    & > label.mdc-label {
+        align-items: center;
+        display: flex;
+        height: 48px;
+        padding-right: 16px;
+        flex: 1;
+    }
+}
+
+
+//allows hide overflow on autocomplete panel
+.mat-mdc-autocomplete-panel.disable-overflow {
+    overflow: hidden;
+}
+
+.mat-mdc-autocomplete-panel.max-height {
+    //domyślnie styl ustawia na 256px
+    max-height: calc(256px + 48px);
+}
+
+.mat-mdc-option.pseudo-checkbox-disabled > .mat-pseudo-checkbox {
+    display: none;
+}
+
+.cdk-virtual-scroll-viewport > .cdk-virtual-scroll-content-wrapper > div > .mat-mdc-option {
+    padding: 0;
+}

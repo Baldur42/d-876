@@ -1,0 +1,77 @@
+$clear-icon-dim: 16px;
+$global-width: calc(var(--global-width) * 1px);
+$input-width: calc($global-width - $clear-icon-dim);
+
+:host {
+    align-items: center;
+    display: flex;
+    justify-items: center;
+    width: $global-width;
+
+    & .form-field {
+        width: $input-width;
+    }
+}
+
+.virtual-scroll-viewport {
+    height: calc(5 * 48px);
+    width: $input-width;
+
+    & > .option-container {
+        height: 48px;
+    }
+}
+
+.pill-container {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    gap: 4px;
+    padding: 4px 8px;
+    overflow-y: hidden;
+    overflow-x: auto;
+    height: 52px;
+
+    & > .pill {
+        align-items: center;
+        box-sizing: border-box;
+        display: flex;
+        height: 28px;
+        justify-content: center;
+        background-color: grey;
+        color: white;
+        border-radius: 5px;
+        padding: 2px 8px;
+        white-space: nowrap;
+    
+        & > .mat-icon {
+            font-size: $clear-icon-dim;
+            height: $clear-icon-dim;
+            width: $clear-icon-dim;
+            margin-left: 4px;
+            margin-bottom: 2px;
+    
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.clear-all {
+    font-size: $clear-icon-dim;
+    height: $clear-icon-dim;
+    width: $clear-icon-dim;
+    margin-top: calc($clear-icon-dim * (-1));
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.checkbox-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100px;
+}
